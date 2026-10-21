@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Körper -->
+    <path
+        android:fillColor="#6C86F5"
+        android:pathData="M54,30 C71,30 84,42 84,59 C84,75 72,86 54,86 C36,86 24,75 24,59 C24,42 37,30 54,30 Z" />
+    <!-- dunklerer Bauch -->
+    <path
+        android:fillColor="#4254D6"
+        android:fillAlpha="0.55"
+        android:pathData="M26,64 C32,80 44,86 54,86 C66,86 78,80 83,64 C74,72 34,72 26,64 Z" />
+    <!-- Glanz -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.4"
+        android:pathData="M34,44 C36,38 42,35 47,36 C42,38 38,42 37,48 Z" />
+    <!-- Krönchen -->
+    <path
+        android:fillColor="#1C1F66"
+        android:pathData="M54,22 L58,30 L66,28 L61,34 L65,41 L54,37 L43,41 L47,34 L42,28 L50,30 Z" />
+    <!-- Augen -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M35,57 a9,11 0 1,0 18,0 a9,11 0 1,0 -18,0 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M55,57 a9,11 0 1,0 18,0 a9,11 0 1,0 -18,0 Z" />
+    <!-- Pupillen -->
+    <path
+        android:fillColor="#17151F"
+        android:pathData="M39.5,59 a5,5.5 0 1,0 10,0 a5,5.5 0 1,0 -10,0 Z" />
+    <path
+        android:fillColor="#17151F"
+        android:pathData="M59.5,59 a5,5.5 0 1,0 10,0 a5,5.5 0 1,0 -10,0 Z" />
+    <!-- Lichtpunkte -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M44.2,56.5 a1.8,1.8 0 1,0 3.6,0 a1.8,1.8 0 1,0 -3.6,0 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M64.2,56.5 a1.8,1.8 0 1,0 3.6,0 a1.8,1.8 0 1,0 -3.6,0 Z" />
+    <!-- Wangen -->
+    <path
+        android:fillColor="#F3A6D8"
+        android:fillAlpha="0.7"
+        android:pathData="M30,70 a5,3 0 1,0 10,0 a5,3 0 1,0 -10,0 Z" />
+    <path
+        android:fillColor="#F3A6D8"
+        android:fillAlpha="0.7"
+        android:pathData="M68,70 a5,3 0 1,0 10,0 a5,3 0 1,0 -10,0 Z" />
+    <!-- Näschen -->
+    <path
+        android:fillColor="#1C1F66"
+        android:pathData="M50,73 a4,3 0 1,0 8,0 a4,3 0 1,0 -8,0 Z" />
+</vector>
