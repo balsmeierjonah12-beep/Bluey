@@ -1,4 +1,4 @@
-package app.bluey.android
+package app.greeny.android
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -40,7 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 
 /**
- * Bluey as a stand-alone, hands-free AI helper: no computer needed. Say "Hey Bluey" (or Pinky, Greeny …)
+ * Greeny as a stand-alone, hands-free AI helper: no computer needed. Say "Hey Greeny" (or Pinky, Greeny …)
  * and talk. Camera and mic are his eyes and ears, and he answers out loud in German.
  */
 class MainActivity : ComponentActivity() {
@@ -189,7 +189,7 @@ class MainActivity : ComponentActivity() {
         wake.languageTag = { settings.lang.tag }
         ownWake.onWake = { live.wake() }
         ownWake.sensitivity = { settings.wakeSensitivity.toDouble() }
-        // Duo mode: two phones, two Blueys, talking over Bluetooth.
+        // Duo mode: two phones, two Greenys, talking over Bluetooth.
         live.duo = duo
         duo.requestPermission = { done ->
             val missing = duo.missingPermissions()
@@ -311,7 +311,7 @@ fun RootView(
         }
 
         AnimatedVisibility(showApp, enter = fadeIn(), exit = fadeOut()) {
-            BlueyAppView(
+            GreenyAppView(
                 store, settings, voice, live.state != LiveVoice.State.ASLEEP, startOnSettings,
                 templates, ownWake, duo, live,
             ) { setShowApp(false) }

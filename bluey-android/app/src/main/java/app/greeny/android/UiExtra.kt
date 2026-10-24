@@ -1,4 +1,4 @@
-package app.bluey.android
+package app.greeny.android
 
 import android.content.Intent
 import androidx.compose.foundation.Canvas
@@ -45,7 +45,7 @@ import kotlin.math.PI
 import kotlin.math.min
 import kotlin.math.sin
 
-/** Teach him the wake phrase ("Hey Bluey"): three or four recordings, then he listens for it all the time, silently. */
+/** Teach him the wake phrase ("Hey Greeny"): three or four recordings, then he listens for it all the time, silently. */
 @Composable
 fun WakeTab(settings: Settings, templates: WakeTemplates, ownWake: OwnWake, awake: Boolean) {
     val skin = Palette.skin
@@ -139,22 +139,22 @@ fun LanguageView(settings: Settings) {
     }
 }
 
-/** Where on the screen the [index]-th other Bluey is, as a gaze (x, y). One other: left or right; more: left, top, right. */
+/** Where on the screen the [index]-th other Greeny is, as a gaze (x, y). One other: left or right; more: left, top, right. */
 fun duoPosition(index: Int, count: Int, side: String): Pair<Double, Double> =
     if (count <= 1) (if (side == "left") -1.0 else 1.0) to -0.05
     else listOf(-1.0 to -0.05, 0.0 to -0.9, 1.0 to -0.05)[index.coerceIn(0, 2)]
 
-/** Duo room: one phone opens it, up to three join, and the Blueys talk without end. */
+/** Duo room: one phone opens it, up to three join, and the Greenys talk without end. */
 @Composable
 fun DuoTab(duo: DuoLink, live: LiveVoice) {
     var topic by remember { mutableStateOf("") }
     LazyColumn(Modifier.padding(top = 12.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
         item {
             androidx.compose.foundation.layout.Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                Text("DUO: BIS ZU 4 BLUEYS", color = Palette.inkSoft, fontFamily = PlexMono, fontSize = 12.sp)
+                Text("DUO: BIS ZU 4 GREENYS", color = Palette.inkSoft, fontFamily = PlexMono, fontSize = 12.sp)
                 Text("Stell die Handys nebeneinander und schalte überall Bluetooth und Standort an. Auf einem Handy tippst du " +
                     "„Raum öffnen“, auf den anderen (bis zu drei) „Raum beitreten“. Sie finden sich von selbst, du musst nichts koppeln. " +
-                    "Dann unterhalten sich die Blueys der Reihe nach, jeder mit seiner Stimme, so lange du willst.",
+                    "Dann unterhalten sich die Greenys der Reihe nach, jeder mit seiner Stimme, so lange du willst.",
                     color = Palette.inkSoft, fontFamily = PlexSans, fontSize = 13.sp)
             }
         }
@@ -211,7 +211,7 @@ fun DuoTab(duo: DuoLink, live: LiveVoice) {
     }
 }
 
-/** While the Blueys talk: dots, notes and hearts flow from the speaker to the listeners, and the words pop up at the speaker's side. */
+/** While the Greenys talk: dots, notes and hearts flow from the speaker to the listeners, and the words pop up at the speaker's side. */
 @Composable
 fun DuoOverlay(live: LiveVoice, duo: DuoLink) {
     if (duo.state != DuoState.CONNECTED || duo.peers.isEmpty()) return
@@ -272,5 +272,41 @@ fun DuoOverlay(live: LiveVoice, duo: DuoLink) {
                 .background(peers[0].skin.c3.copy(alpha = 0.85f)).clickable(enabled = talking) { live.endDuo(true) }
                 .padding(horizontal = 14.dp, vertical = 7.dp),
         )
+    }
+}
+
+
+@Composable
+private fun InfoBlock(title: String, text: String) {
+    androidx.compose.foundation.layout.Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        Text(title, color = Palette.inkSoft, fontFamily = PlexMono, fontSize = 12.sp)
+        Text(text, color = Palette.text, fontFamily = PlexSans, fontSize = 14.sp)
+    }
+}
+
+/** What happens with the data, and whose work is in the app. */
+@Composable
+fun InfoTab() {
+    LazyColumn(Modifier.padding(top = 12.dp), verticalArrangement = Arrangement.spacedBy(18.dp)) {
+        item {
+            InfoBlock("ÜBER GREENY", "Greeny ist ein kleiner KI-Helfer mit Gesicht. Er hört zu, sieht dich über die Frontkamera, antwortet mit Stimme " +
+                "und kann zum Beispiel Timer stellen, Orte in der Nähe suchen und mit anderen Greenys sprechen.")
+        }
+        item {
+            InfoBlock("DEINE DATEN", "Solange er wach ist, geht dein Ton an Google (Gemini). Ist „Er sieht mich“ an, bekommt Gemini dazu kleine Kamerabilder. " +
+                "Im Schlaf prüft Gemini im Modus „Gemini prüft“ kurze Sprachfetzen auf das Weckwort. " +
+                "Gesichts-, Gegenstands- und Stimmenerkennung laufen nur auf deinem Handy. Dein Schlüssel, deine Notizen, der Verlauf und die " +
+                "Stimmenprofile (nur Zahlen, keine Aufnahmen) bleiben auf dem Handy. Für Orte in der Nähe fragt er OpenStreetMap mit deinem " +
+                "ungefähren Standort, und das Wetter holt Gemini mit der Google-Suche.")
+        }
+        item {
+            InfoBlock("GEMINI", "Du nutzt deinen eigenen Gemini-API-Schlüssel (aistudio.google.com/apikey). Es gelten die Nutzungsbedingungen von Google. " +
+                "Je nach Land und Tarif kann Google verlangen, dass der Schlüssel zu einem Konto mit Abrechnung gehört. Bitte prüfe das dort.")
+        }
+        item {
+            InfoBlock("LIZENZEN", "Schriften Fredoka und IBM Plex: SIL Open Font License 1.1. Android-Bibliotheken (Jetpack Compose, CameraX, OkHttp): " +
+                "Apache License 2.0. Google ML Kit, Google Play-Dienste und Gemini: Bedingungen von Google. Orte in der Nähe: " +
+                "© OpenStreetMap-Mitwirkende (Open Database License). Idee und Teile des Aufbaus beruhen auf einem gemeinfreien Open-Source-Projekt (Unlicense).")
+        }
     }
 }

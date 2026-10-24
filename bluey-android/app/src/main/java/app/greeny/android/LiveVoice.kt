@@ -1,4 +1,4 @@
-package app.bluey.android
+package app.greeny.android
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -47,13 +47,13 @@ class LiveVoice(
 
     companion object {
         const val MIC_RATE = 16_000
-        private const val TAG = "BlueyLive"
+        private const val TAG = "GreenyLive"
         private const val IDLE_SLEEP_MS = 5 * 60_000L   // nobody talked to him for 5 minutes: back to sleep
         private const val VIDEO_EVERY_MS = 500L          // live picture: a new frame every half second
     }
 
     private val app = context.applicationContext
-    private val prefs = app.getSharedPreferences("bluey", Context.MODE_PRIVATE)
+    private val prefs = app.getSharedPreferences("greeny", Context.MODE_PRIVATE)
     private val main = Handler(Looper.getMainLooper())
     private val http = OkHttpClient.Builder().pingInterval(20, TimeUnit.SECONDS).readTimeout(0, TimeUnit.MILLISECONDS).build()
     private val audio = app.getSystemService(Context.AUDIO_SERVICE) as AudioManager
@@ -114,7 +114,7 @@ class LiveVoice(
     private val resetDrop = Runnable { dropTurn = false }
     private var savedCallVolume = -1
 
-    // Duo room: up to four phones with a Bluey each, talking to each other without end.
+    // Duo room: up to four phones with a Greeny each, talking to each other without end.
     var duo: DuoLink? = null
     var duoActive by mutableStateOf(false); private set
     var duoPeerLine by mutableStateOf(""); private set
@@ -268,16 +268,16 @@ class LiveVoice(
     // Duo room
 
     private fun me() = duo?.myName ?: settings.skin.name
-    private fun others() = duo?.peers?.joinToString(", ") { it.name } ?: "die anderen Blueys"
+    private fun others() = duo?.peers?.joinToString(", ") { it.name } ?: "die anderen Greenys"
 
-    private fun duoIntro() = "Duo-Modus: Du heißt ${me()}. Neben dir stehen andere Blueys auf Handys: ${others()}. " +
+    private fun duoIntro() = "Duo-Modus: Du heißt ${me()}. Neben dir stehen andere Greenys auf Handys: ${others()}. " +
         "Ihr hört euch nicht, ihr bekommt die Sätze als Text. Unterhaltet euch ausschließlich auf ${settings.lang.english}, " +
         "locker und witzig, und sprich die anderen mit Namen an."
 
     /** Starts a talk with the others in the room. Returns what he can tell the user. */
     fun startDuo(topic: String): String {
         val link = duo
-        if (link == null || link.state != DuoState.CONNECTED || link.peers.isEmpty()) return "Es ist kein zweites Bluey verbunden."
+        if (link == null || link.state != DuoState.CONNECTED || link.peers.isEmpty()) return "Es ist kein zweites Greeny verbunden."
         link.startConversation(topic.ifBlank { "irgendwas Lustiges" })
         if (state == State.ASLEEP) wake()
         return "Ich unterhalte mich jetzt mit ${others()}."

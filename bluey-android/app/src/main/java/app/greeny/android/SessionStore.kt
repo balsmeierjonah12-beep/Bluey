@@ -1,4 +1,4 @@
-package app.bluey.android
+package app.greeny.android
 
 import android.content.Context
 import android.os.Handler
@@ -29,7 +29,7 @@ data class TranscriptEntry(
 
 data class PendingChunk(val index: Int, val startedMs: Long)
 
-data class BlueySession(
+data class GreenySession(
     val id: String = UUID.randomUUID().toString().uppercase(),
     val startedMs: Long,
     val endedMs: Long? = null,
@@ -58,7 +58,7 @@ data class BlueySession(
     val exportText: String
         get() {
             val fmt = DateFormat.getTimeInstance(DateFormat.MEDIUM)
-            val lines = mutableListOf("Bluey Gespräch, ${DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(Date(startedMs))}", "")
+            val lines = mutableListOf("Greeny Gespräch, ${DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(Date(startedMs))}", "")
             for (e in displayEntries) {
                 val who = when (e.kind) {
                     EntryKind.TRANSCRIPT -> "Sprecher ${e.speaker ?: "?"}"
@@ -78,10 +78,10 @@ class SessionStore(context: Context) {
     private val file = File(context.filesDir, "sessions.json")
     private val main = Handler(Looper.getMainLooper())
 
-    var sessions by mutableStateOf<List<BlueySession>>(emptyList()); private set  // newest first
+    var sessions by mutableStateOf<List<GreenySession>>(emptyList()); private set  // newest first
     var currentID by mutableStateOf<String?>(null); private set
 
-    var onSync: ((List<BlueySession>) -> Unit)? = null
+    var onSync: ((List<GreenySession>) -> Unit)? = null
     private val dirty = HashSet<String>()
     private var syncWork: Runnable? = null
     private var saveWork: Runnable? = null
@@ -90,11 +90,11 @@ class SessionStore(context: Context) {
         sessions = load().map { s -> if (s.endedMs == null) s.copy(endedMs = s.entries.lastOrNull()?.timeMs ?: s.startedMs) else s }
     }
 
-    val current: BlueySession? get() = sessions.firstOrNull { it.id == currentID }
+    val current: GreenySession? get() = sessions.firstOrNull { it.id == currentID }
 
     fun start() {
         end()
-        val s = BlueySession(startedMs = System.currentTimeMillis())
+        val s = GreenySession(startedMs = System.currentTimeMillis())
         sessions = listOf(s) + sessions
         currentID = s.id
         save()
@@ -167,7 +167,7 @@ class SessionStore(context: Context) {
     fun recentText(limit: Int = 6000): String? {
         val cur = current ?: return null
         val text = cur.displayEntries.filter { it.kind != EntryKind.REPORT }
-            .joinToString("\n") { (if (it.kind == EntryKind.REPLY) "Bluey: " else "") + it.text }
+            .joinToString("\n") { (if (it.kind == EntryKind.REPLY) "Greeny: " else "") + it.text }
         return if (text.isEmpty()) null else text.takeLast(limit)
     }
 
@@ -194,15 +194,15 @@ class SessionStore(context: Context) {
         main.postDelayed(w, 6000)
     }
 
-    private fun update(change: (BlueySession) -> BlueySession) { currentID?.let { update(it, change) } }
+    private fun update(change: (GreenySession) -> GreenySession) { currentID?.let { update(it, change) } }
 
-    private fun update(id: String, change: (BlueySession) -> BlueySession) {
+    private fun update(id: String, change: (GreenySession) -> GreenySession) {
         if (sessions.none { it.id == id }) return
         replace(id, change)
         dirty.add(id); scheduleSync(); scheduleSave()
     }
 
-    private fun replace(id: String, change: (BlueySession) -> BlueySession) {
+    private fun replace(id: String, change: (GreenySession) -> GreenySession) {
         sessions = sessions.map { if (it.id == id) change(it) else it }
     }
 
@@ -222,12 +222,12 @@ class SessionStore(context: Context) {
         } catch (_: Exception) {}
     }
 
-    private fun load(): List<BlueySession> = try {
+    private fun load(): List<GreenySession> = try {
         val arr = JSONArray(file.readText())
         (0 until arr.length()).map { sessionFromJson(arr.getJSONObject(it)) }
     } catch (_: Exception) { emptyList() }
 
-    private fun BlueySession.toJson() = JSONObject()
+    private fun GreenySession.toJson() = JSONObject()
         .put("id", id).put("started", startedMs).put("ended", endedMs ?: JSONObject.NULL)
         .put("notesPath", notesPath ?: JSONObject.NULL)
         .put("entries", JSONArray(entries.map {
@@ -236,11 +236,11 @@ class SessionStore(context: Context) {
         }))
         .put("pending", JSONArray(pending.map { JSONObject().put("index", it.index).put("started", it.startedMs) }))
 
-    private fun sessionFromJson(o: JSONObject): BlueySession {
+    private fun sessionFromJson(o: JSONObject): GreenySession {
         fun JSONObject.str(k: String) = if (has(k) && !isNull(k)) getString(k) else null
         val entries = o.getJSONArray("entries")
         val pending = o.optJSONArray("pending") ?: JSONArray()
-        return BlueySession(
+        return GreenySession(
             id = o.getString("id"),
             startedMs = o.getLong("started"),
             endedMs = if (o.isNull("ended")) null else o.getLong("ended"),

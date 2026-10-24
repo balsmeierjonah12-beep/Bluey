@@ -1,16 +1,16 @@
-# Bluey für Android (eigenständig, mit Gemini)
+# Greeny für Android (eigenständig, mit Gemini)
 
-Bluey ist ein reiner KI-Helfer auf dem Handy. Es wird **kein Mac und kein Desktop** gebraucht.
+Greeny ist ein reiner KI-Helfer auf dem Handy. Es wird **kein Mac und kein Desktop** gebraucht.
 
-- **Freihändig:** Sag „Hey Bluey“ (oder „Hey Pinky“, „Hey Greeny“ …), dann wacht er auf. Du musst nichts tippen.
+- **Freihändig:** Sag „Hey Greeny“ (oder „Hey Pinky“, „Hey Greeny“ …), dann wacht er auf. Du musst nichts tippen.
 - **Er spricht Deutsch** (und antwortet in deiner Sprache, wenn du eine andere sprichst) mit einer süßen Stimme.
-  Bluey und Greeny sind Jungs, Pinky ist ein Mädchen. Dazu erscheint seine Antwort als kleine Sprechblase.
+  Greeny und Greeny sind Jungs, Pinky ist ein Mädchen. Dazu erscheint seine Antwort als kleine Sprechblase.
 - **Farben:** In den Einstellungen wählst du seine Farbe. Je nach Farbe heißt er anders, hört auf einen anderen Namen
   und hat eine andere Stimme:
 
   | Farbe | Name | Stimme |
   | --- | --- | --- |
-  | Blau | Bluey | Junge (Puck) |
+  | Blau | Greeny | Junge (Puck) |
   | Pink | Pinky | Mädchen (Leda) |
   | Grün | Greeny | Junge (Fenrir) |
   | Lila | Purply | Mädchen (Aoede) |
@@ -23,32 +23,35 @@ Bluey ist ein reiner KI-Helfer auf dem Handy. Es wird **kein Mac und kein Deskto
   dazu alle halbe Sekunde ein kleines Bild (Live-Video), er sieht also dich und alles, was du ihm zeigst. Abschaltbar.
 - **Er reagiert auf Bewegung:** Hältst du ihm etwas hin oder bewegt sich etwas vor der Kamera, schaut er hin, reißt die Augen
   auf und hüpft. Er blinzelt nur noch ab und zu.
-- **Stimmen:** Im Menü „Stimmen“ (oder per Zuruf „Bluey, lerne meine Stimme“) lernt er die Stimmen der Leute zu Hause.
+- **Stimmen:** Im Menü „Stimmen“ (oder per Zuruf „Greeny, lerne meine Stimme“) lernt er die Stimmen der Leute zu Hause.
   Danach erkennt er, wer spricht, und nennt die Person beim Namen. Das ist eine einfache Erkennung auf dem Handy, kein
   Sicherheitsmerkmal. Gespeichert werden nur Zahlen, keine Aufnahmen.
 - **Noch mehr:** Wetter am Standort des Handys („Wie wird das Wetter?“), Timer und Wecker stellen, Taschenlampe, Uhrzeit, sich Dinge merken („Merk dir …“, Menü „Notizen“),
   Witze, Rätsel und Schere-Stein-Papier mit der Kamera.
 - **Recherche:** Für Aktuelles nutzt er die Google-Suche von Gemini.
-- **App-Icon:** Bluey selbst.
+- **App-Icon:** Greeny selbst.
 
 ## Neu: Weckwort, Duo, Gegenstände, Standort
 
 - **Aufwecken per Zuruf (drei Modi, Einstellungen):**
   - **Gemini prüft** (Standard): Das Mikrofon bleibt im Schlaf lautlos offen (kein Piepton, keine Aufnahme nötig). Kurze Sprachfetzen
-    (unter 2,5 Sekunden, höchstens einer alle paar Sekunden) schickt das Handy zur Prüfung an Gemini („Hat jemand ‚Hey Bluey‘ gesagt?“).
+    (unter 2,5 Sekunden, höchstens einer alle paar Sekunden) schickt das Handy zur Prüfung an Gemini („Hat jemand ‚Hey Greeny‘ gesagt?“).
     Am genauesten. Im Menü „Weckwort“ kannst du es testen.
-  - **Mein Weckwort:** Du nimmst „Hey Bluey“ im Menü „Weckwort“ drei- bis viermal auf. Alles bleibt auf dem Handy, ist aber ungenauer.
+  - **Mein Weckwort:** Du nimmst „Hey Greeny“ im Menü „Weckwort“ drei- bis viermal auf. Alles bleibt auf dem Handy, ist aber ungenauer.
   - **Handy-Erkennung:** Die Spracherkennung des Handys hört mit. Piept auf vielen Handys.
 - **Sprache:** Beim ersten Start wählst du die Sprache (16 zur Auswahl, später änderbar in den Einstellungen). Er spricht dann
   **nur** diese Sprache, auch wenn du eine andere sprichst.
-- **Duo-Raum mit bis zu 4 Blueys:** Handys nebeneinander stellen, überall Bluetooth und Standort an. Auf einem Handy im Menü „Duo“
+- **Duo-Raum mit bis zu 4 Greenys:** Handys nebeneinander stellen, überall Bluetooth und Standort an. Auf einem Handy im Menü „Duo“
   „Raum öffnen“, auf den anderen (bis zu drei) „Raum beitreten“. Sie finden sich von selbst (Googles Nearby über Bluetooth, **kein
-  Koppeln nötig**). Dann ein Thema wählen und „Gespräch starten“ (oder per Zuruf „Bluey, unterhalte dich mit den anderen über Pizza“).
-  Die Blueys reden der Reihe nach, jeder mit seiner Stimme, und **das Gespräch läuft ohne Ende, bis du es beendest**. Hängt eins,
+  Koppeln nötig**). Dann ein Thema wählen und „Gespräch starten“ (oder per Zuruf „Greeny, unterhalte dich mit den anderen über Pizza“).
+  Die Greenys reden der Reihe nach, jeder mit seiner Stimme, und **das Gespräch läuft ohne Ende, bis du es beendest**. Hängt eins,
   wird sein Zug übersprungen. Dabei schauen sie zum Sprecher, nicken, Noten und Herzen fliegen hinüber, und die Worte erscheinen an
   der Seite des Sprechers (bei 2 Handys links oder rechts, bei mehr links, oben und rechts).
 - **Er sieht Gegenstände:** Alles Neue im Bild, das nicht dein Gesicht ist (zum Beispiel ein Gegenstand, den du ihm hinhältst), verfolgt er
   mit den Augen, staunt und hüpft. Nach einem Moment bekommt Gemini den Hinweis, hinzusehen, und sagt kurz, was es ist.
+- **Orte in der Nähe:** „Wo ist die nächste Apotheke?“, „Gibt es hier einen McDonald's?“, „Wo ist eine Toilette?“. Er sucht in deiner Umgebung
+  (Restaurants, Cafés, Läden, Tankstellen, Haltestellen, Parks und mehr, Daten von OpenStreetMap), nennt Entfernung und Richtung und
+  zeigt auf Wunsch die Karte.
 - **Standort:** „Wo bin ich?“ und „Wie wird das Wetter?“ nutzen den Standort des Handys. Beim Aufwachen kennt er schon deinen Ort.
 - **Keine Endlosschleife:** Wenn er etwas nicht kann, sagt er es einmal. Hört das Mikrofon seine eigene Stimme wieder, wird das erkannt
   und nicht beantwortet, und wiederholt er sich, wird die Wiederholung abgeschnitten.
@@ -75,7 +78,7 @@ Beim ersten Start Kamera und Mikrofon erlauben und den **Gemini-API-Schlüssel**
 ## Technik
 
 `Agent.kt` (Persönlichkeit, Stimme, Tools, Recherche) · `LiveVoice.kt` (Gemini Live per WebSocket, Mikrofon) ·
-`Player.kt` (seine Stimme) · `WakeWord.kt` („Hey Bluey“) · `CameraWatcher.kt` (Kamera, Gesicht) ·
+`Player.kt` (seine Stimme) · `WakeWord.kt` („Hey Greeny“) · `CameraWatcher.kt` (Kamera, Gesicht) ·
 `Palette.kt` (Farben und Namen) · `FaceView.kt` (Gesicht) · `Ui.kt`, `MainActivity.kt` · `SessionStore.kt` (Verlauf) · `Settings.kt`
 
 Modelle (in `Agent.kt` änderbar): Live `gemini-3.8-live`, Recherche `gemini-3.8-flash`.
@@ -103,9 +106,19 @@ Hilft das nicht: **Doppeltippen** setzt ihn immer zurück (er schläft ein), dan
 - Das Wetter braucht die Standort-Erlaubnis und kommt von open-meteo.com.
 - Das eigene Weckwort ist eine einfache Mustererkennung. Es kennt nur die Stimmen, die es aufgenommen hat, und kann sich irren.
 - Der Modus „Gemini prüft“ schickt kurze Sprachfetzen im Schlaf an Google. Wer das nicht will, wählt „Mein Weckwort“.
-- Duo braucht die Google Play-Dienste. Die Blueys hören sich nicht gegenseitig, sie schicken sich die Sätze als Text.
+- Duo braucht die Google Play-Dienste. Die Greenys hören sich nicht gegenseitig, sie schicken sich die Sätze als Text.
 - Er hört dir nicht zu, solange er selbst spricht (sonst würde er sich selbst antworten).
 
 ## Lizenz
 
 Unlicense, wie das Hauptprojekt. Die Schriften (Fredoka, IBM Plex) stehen unter der SIL OFL, siehe `licenses/`.
+
+## Zum Verkaufen
+
+- Der Name der App ist **Greeny**, das Icon zeigt Greeny. Die blaue Farbe heißt jetzt „Blaubi“.
+- Das Wetter kommt von Gemini (Google-Suche), nicht mehr von einer nichtkommerziellen Schnittstelle.
+- Menü „Info“ enthält Datenhinweise und Lizenzen (inklusive „© OpenStreetMap-Mitwirkende“).
+- `Datenschutzerklaerung-Vorlage.md` ist eine Vorlage, die du ergänzen und prüfen lassen musst.
+- Noch offen für den Play Store: eine signierte Release-Version (statt der Debug-APK), die Datenschutz-Angaben in der Play Console und
+  ein Gewerbe/Steuern, wenn du regelmäßig verkaufst. Der Dateiname `bluey-android.zip` und das GitHub-Projekt heißen nur noch so,
+  weil der Bau darauf aufbaut.

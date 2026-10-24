@@ -1,4 +1,4 @@
-package app.bluey.android
+package app.greeny.android
 
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -43,9 +43,9 @@ object Agent {
             in der Kamera: zähle "Schere, Stein, Papier!" und sag, wer gewonnen hat), Wer-bin-ich und Wortspiele.
 
             Funktionen: Du kannst Timer und Wecker stellen (set_timer, set_alarm), die Taschenlampe an- und ausmachen \
-            (flashlight), die Uhrzeit und das Datum sowie das Wetter am Standort des Handys nachschauen (get_time, get_weather), den Standort des Handys nennen (get_location), dir Dinge merken (remember) und wieder \
-            vergessen (forget). Ist ein zweites Bluey per Bluetooth verbunden, kannst du dich mit ihm unterhalten \
-            (duo_talk mit einem Thema) und das wieder beenden (duo_stop). Sagt der Nutzer "lerne meine Stimme" oder Ähnliches, frag nach dem Namen und rufe \
+            (flashlight), die Uhrzeit und das Datum sowie das Wetter am Standort des Handys nachschauen (get_time, get_weather), den Standort des Handys nennen (get_location), Orte in der Nähe suchen (get_nearby) und auf der Karte zeigen (show_on_map), dir Dinge merken (remember) und wieder \
+            vergessen (forget). Ist ein zweites Greeny per Bluetooth verbunden, kannst du dich mit ihm unterhalten \
+            (duo_talk mit einem Thema) und das wieder beenden (duo_stop). Bei Orten in der Nähe nennst du höchstens zwei, drei Treffer mit Entfernung und Richtung. Sagt der Nutzer "lerne meine Stimme" oder Ähnliches, frag nach dem Namen und rufe \
             learn_my_voice auf.
 
             Hinweise vom Handy in Klammern, die mit "Hinweis vom Handy" beginnen, sagen dir, wer gerade spricht. Das \
@@ -81,6 +81,9 @@ object Agent {
 
     private fun prop(type: String, description: String) = JSONObject().put("type", type).put("description", description)
 
+    private fun enumProp(values: List<String>, description: String) =
+        JSONObject().put("type", "string").put("description", description).put("enum", JSONArray(values))
+
     private val functionDeclarations: JSONArray
         get() = JSONArray()
             .put(declaration("web_research",
@@ -97,6 +100,16 @@ object Agent {
             .put(declaration("flashlight", "Turn the phone's flashlight on or off.",
                 JSONObject().put("on", prop("boolean", "true for on, false for off.")), listOf("on")))
             .put(declaration("get_time", "Get the current date and time."))
+            .put(declaration("get_nearby", "Find places near the phone's current location (restaurants, pharmacies, shops, petrol stations, toilets, bus stops …). Pick the closest category; use name for a specific shop or brand. Results come with distance and direction.",
+                JSONObject()
+                    .put("category", enumProp(listOf("restaurant", "cafe", "fast_food", "bar", "pharmacy", "supermarket", "bakery", "fuel", "atm", "bank",
+                        "hospital", "doctor", "toilet", "parking", "charging", "hotel", "cinema", "bus_stop", "station", "park", "gym", "post", "police"),
+                        "The kind of place (optional if a name is given)."))
+                    .put("name", prop("string", "A specific name or brand, for example McDonald's (optional)."))
+                    .put("radius_m", prop("integer", "Search radius in metres, default 1500, at most 5000 (optional).")),
+                emptyList()))
+            .put(declaration("show_on_map", "Open the map app with a search, so the user can see a place or be guided there.",
+                JSONObject().put("query", prop("string", "What to show, for example a place name or an address.")), listOf("query")))
             .put(declaration("get_location", "Get the address or place where the phone currently is."))
             .put(declaration("get_weather", "Get the current weather and the forecast for today and tomorrow at the phone's current location."))
             .put(declaration("remember", "Remember something about the user for later conversations (a fact, a plan, a preference).",
@@ -105,9 +118,9 @@ object Agent {
                 JSONObject().put("contains", prop("string", "Text that the notes to forget contain.")), listOf("contains")))
             .put(declaration("learn_my_voice", "Start learning the voice of a person so that you can recognise them later. The person then talks for about twenty seconds.",
                 JSONObject().put("name", prop("string", "The person's name.")), listOf("name")))
-            .put(declaration("duo_talk", "Start a chat with the other Bluey that is connected by Bluetooth on the phone next to this one.",
+            .put(declaration("duo_talk", "Start a chat with the other Greeny that is connected by Bluetooth on the phone next to this one.",
                 JSONObject().put("topic", prop("string", "What the two should talk about.")), listOf("topic")))
-            .put(declaration("duo_stop", "Stop the chat with the other Bluey."))
+            .put(declaration("duo_stop", "Stop the chat with the other Greeny."))
             .put(declaration("go_to_sleep",
                 "Go back to sleep. Use when the user says goodbye (Tschüss, bis später, schlaf gut) or asks you to sleep."))
 

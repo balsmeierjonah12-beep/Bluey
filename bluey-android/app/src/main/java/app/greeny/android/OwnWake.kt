@@ -1,4 +1,4 @@
-package app.bluey.android
+package app.greeny.android
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -145,9 +145,9 @@ object WakeDsp {
     }
 }
 
-/** The recordings of the wake phrase ("Hey Bluey" …) for each color, and how close a match has to be. Numbers only. */
+/** The recordings of the wake phrase ("Hey Greeny" …) for each color, and how close a match has to be. Numbers only. */
 class WakeTemplates(context: Context) {
-    private val prefs = context.getSharedPreferences("bluey_wake", Context.MODE_PRIVATE)
+    private val prefs = context.getSharedPreferences("greeny_wake", Context.MODE_PRIVATE)
     private val templates = HashMap<String, MutableList<List<FloatArray>>>()
     private val thresholds = HashMap<String, Double>()
     /** Changes whenever something was recorded or reset, so screens update. */
@@ -213,7 +213,7 @@ class WakeTemplates(context: Context) {
 }
 
 /**
- * Listens all the time, silently, for the phrase you taught him ("Hey Bluey"): the microphone stays open (no beeps),
+ * Listens all the time, silently, for the phrase you taught him ("Hey Greeny"): the microphone stays open (no beeps),
  * short bursts of sound are compared with your recordings on the phone, and nothing leaves the phone.
  */
 class OwnWake(private val templates: WakeTemplates) {
@@ -334,7 +334,7 @@ class OwnWake(private val templates: WakeTemplates) {
         running = false
     }
 
-    /** Hands a short burst of sound to the check (at most one every 3.5 seconds, and only if it is about as long as "Hey Bluey"). */
+    /** Hands a short burst of sound to the check (at most one every 3.5 seconds, and only if it is about as long as "Hey Greeny"). */
     private fun verify(check: (ShortArray, (Boolean) -> Unit) -> Unit, chunks: List<ShortArray>, frames: Int) {
         val now = System.currentTimeMillis()
         if (frames < 40 || frames > 230 || now - lastVerify < 3500) return

@@ -1,4 +1,4 @@
-package app.bluey.android
+package app.greeny.android
 
 import android.app.Notification
 import android.app.NotificationChannel
@@ -15,7 +15,7 @@ import androidx.core.content.ContextCompat
 /** Keeps the mic alive while a session runs, even if the screen goes off or the app is in the background. */
 class SessionService : Service() {
     companion object {
-        private const val CHANNEL = "bluey-session"
+        private const val CHANNEL = "greeny-session"
         fun start(context: Context, name: String) {
             try {
                 ContextCompat.startForegroundService(context,
@@ -34,7 +34,7 @@ class SessionService : Service() {
             android.app.PendingIntent.FLAG_IMMUTABLE)
         val notification: Notification = NotificationCompat.Builder(this, CHANNEL)
             .setSmallIcon(android.R.drawable.ic_btn_speak_now)
-            .setContentTitle("${intent?.getStringExtra("name") ?: "Bluey"} hört zu")
+            .setContentTitle("${intent?.getStringExtra("name") ?: "Greeny"} hört zu")
             .setContentText("Tippen zum Öffnen. Doppeltippen schickt ihn schlafen.")
             .setContentIntent(open)
             .setOngoing(true)

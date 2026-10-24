@@ -1,4 +1,4 @@
-package app.bluey.android
+package app.greeny.android
 
 import android.Manifest
 import android.content.Context
@@ -32,25 +32,25 @@ enum class DuoState { OFF, WAITING, CONNECTING, CONNECTED }
 class DuoPeer(val name: String, val skin: Skin)
 
 /**
- * Duo room: up to four phones with a Bluey each. One phone opens the room (host), the others join. Google's Nearby
+ * Duo room: up to four phones with a Greeny each. One phone opens the room (host), the others join. Google's Nearby
  * Connections finds the room over Bluetooth, no pairing needed. The host passes every line on and says who speaks
- * next, so the Blueys take turns and never talk over each other. The talk runs until someone stops it.
+ * next, so the Greenys take turns and never talk over each other. The talk runs until someone stops it.
  */
 class DuoLink(private val context: Context) {
     companion object {
         const val MAX_PEOPLE = 4
-        private const val SERVICE_ID = "app.bluey.android.duo"
+        private const val SERVICE_ID = "app.greeny.android.duo"
         private const val SEARCH_MS = 90_000L
         private const val TURN_TIMEOUT_MS = 30_000L
     }
 
-    private val prefs = context.getSharedPreferences("bluey", Context.MODE_PRIVATE)
+    private val prefs = context.getSharedPreferences("greeny", Context.MODE_PRIVATE)
     private val main = Handler(Looper.getMainLooper())
 
     var state by mutableStateOf(DuoState.OFF); private set
     var message by mutableStateOf(""); private set
     var isHost by mutableStateOf(false); private set
-    /** The name this phone's Bluey has in the room (made unique if two phones have the same color). */
+    /** The name this phone's Greeny has in the room (made unique if two phones have the same color). */
     var myName by mutableStateOf(Palette.skin.name); private set
     /** Everybody else in the room. */
     var peers by mutableStateOf<List<DuoPeer>>(emptyList()); private set
@@ -102,7 +102,7 @@ class DuoLink(private val context: Context) {
     private fun withPermission(then: () -> Unit) {
         if (missingPermissions().isEmpty()) { then(); return }
         requestPermission { ok ->
-            if (ok) then() else message = "Ich brauche die Erlaubnis für Geräte in der Nähe (Bluetooth). Erlaube sie in den Handy-Einstellungen für Bluey."
+            if (ok) then() else message = "Ich brauche die Erlaubnis für Geräte in der Nähe (Bluetooth). Erlaube sie in den Handy-Einstellungen für Greeny."
         }
     }
 
@@ -234,7 +234,7 @@ class DuoLink(private val context: Context) {
         when (json.optString("t")) {
             "hello" -> {
                 if (members.size >= MAX_PEOPLE || members.any { it.endpoint == endpoint }) return
-                val name = uniqueName(json.optString("name", "Bluey"))
+                val name = uniqueName(json.optString("name", "Greeny"))
                 members.add(Member(name, Skins.byId(json.optString("skin")), endpoint))
                 pending.remove(endpoint)
                 sendTo(endpoint, JSONObject().put("t", "welcome").put("name", name))

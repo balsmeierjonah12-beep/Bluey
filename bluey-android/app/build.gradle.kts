@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "app.bluey.android"
+    namespace = "app.greeny.android"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "app.bluey.android"
+        applicationId = "app.greeny.android"
         minSdk = 26
         targetSdk = 34
         versionCode = 1

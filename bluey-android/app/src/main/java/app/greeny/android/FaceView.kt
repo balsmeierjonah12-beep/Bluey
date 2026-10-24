@@ -1,4 +1,4 @@
-package app.bluey.android
+package app.greeny.android
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -103,7 +103,7 @@ class FaceAnimator {
         reactY = gazeY
     }
 
-    /** The other Bluey said something: a little nod. */
+    /** The other Greeny said something: a little nod. */
     fun duoNod() {
         hop.velocity += 240.0
         browLift.velocity += 100.0

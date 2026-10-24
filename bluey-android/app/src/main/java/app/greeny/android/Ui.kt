@@ -1,4 +1,4 @@
-package app.bluey.android
+package app.greeny.android
 
 import android.content.Intent
 import androidx.compose.animation.AnimatedVisibility
@@ -289,7 +289,7 @@ internal fun Chip(label: String, selected: Boolean = false, onClick: () -> Unit)
 
 /** His app: the list of conversations, one conversation's transcript, and the settings. */
 @Composable
-fun BlueyAppView(
+fun GreenyAppView(
     store: SessionStore, settings: Settings, voice: VoiceID, awake: Boolean, startOnSettings: Boolean,
     templates: WakeTemplates, ownWake: OwnWake, duo: DuoLink, live: LiveVoice, onClose: () -> Unit,
 ) {
@@ -310,6 +310,7 @@ fun BlueyAppView(
                     Chip("Duo", tab == 5) { tab = 5 }
                     Chip("Stimmen", tab == 2) { tab = 2 }
                     Chip("Notizen", tab == 3) { tab = 3 }
+                    Chip("Info", tab == 6) { tab = 6 }
                 }
             }
             Box(Modifier.size(44.dp).clip(CircleShape).clickable { if (session != null) openID = null else onClose() }, contentAlignment = Alignment.Center) {
@@ -323,6 +324,7 @@ fun BlueyAppView(
             tab == 3 -> NotesTab(settings)
             tab == 4 -> WakeTab(settings, templates, ownWake, awake)
             tab == 5 -> DuoTab(duo, live)
+            tab == 6 -> InfoTab()
             store.sessions.isEmpty() -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text("Noch keine Gespräche. Sag „Hey ${Palette.skin.name}“, um loszulegen.", color = Palette.inkSoft, fontFamily = PlexSans, fontSize = 16.sp)
             }
@@ -516,7 +518,7 @@ private fun ToggleRow(title: String, text: String, checked: Boolean, onChange: (
 }
 
 @Composable
-private fun SessionDetail(store: SessionStore, s: BlueySession, onDeleted: () -> Unit) {
+private fun SessionDetail(store: SessionStore, s: GreenySession, onDeleted: () -> Unit) {
     val context = LocalContext.current
     val clipboard = LocalClipboardManager.current
     var copied by remember { mutableStateOf(false) }

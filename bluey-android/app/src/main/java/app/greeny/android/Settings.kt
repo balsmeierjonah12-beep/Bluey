@@ -1,4 +1,4 @@
-package app.bluey.android
+package app.greeny.android
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -14,12 +14,12 @@ class Settings(context: Context) {
     private val prefs: SharedPreferences = try {
         val master = MasterKey.Builder(context).setKeyScheme(MasterKey.KeyScheme.AES256_GCM).build()
         EncryptedSharedPreferences.create(
-            context, "bluey_secure", master,
+            context, "greeny_secure", master,
             EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
             EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM,
         )
     } catch (e: Exception) {
-        context.getSharedPreferences("bluey_secure_fallback", Context.MODE_PRIVATE)
+        context.getSharedPreferences("greeny_secure_fallback", Context.MODE_PRIVATE)
     }
 
     private var keyState by mutableStateOf(prefs.getString("geminiKey", "") ?: "")
@@ -61,7 +61,7 @@ class Settings(context: Context) {
         (0 until a.length()).map { a.getString(it) }
     } catch (_: Exception) { emptyList() }
 
-    init { Palette.skin = Skins.byId(prefs.getString("color", "blue")) }
+    init { Palette.skin = Skins.byId(prefs.getString("color", "green")) }
 
     var apiKey: String
         get() = keyState

@@ -1,4 +1,4 @@
-package app.bluey.android
+package app.greeny.android
 
 import android.content.Context
 import android.content.Intent
@@ -13,7 +13,7 @@ import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 
 /**
- * Listens for "Hey Bluey" (or Pinky, Greeny …) while he's asleep, using Android's own speech recognizer,
+ * Listens for "Hey Greeny" (or Pinky, Greeny …) while he's asleep, using Android's own speech recognizer,
  * on the phone when the phone has an offline German pack. Everything runs on the main thread.
  */
 class WakeWord(private val context: Context) {

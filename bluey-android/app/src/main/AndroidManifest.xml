@@ -37,8 +37,8 @@
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:label="Bluey"
-        android:theme="@style/Theme.Bluey">
+        android:label="Greeny"
+        android:theme="@style/Theme.Greeny">
 
         <activity
             android:name=".MainActivity"

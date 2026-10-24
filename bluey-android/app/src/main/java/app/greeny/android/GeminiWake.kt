@@ -1,4 +1,4 @@
-package app.bluey.android
+package app.greeny.android
 
 import android.util.Base64
 import okhttp3.MediaType.Companion.toMediaType
@@ -12,7 +12,7 @@ import java.nio.ByteOrder
 import java.util.concurrent.TimeUnit
 
 /**
- * Asks Gemini whether a short burst of sound contains the wake phrase ("Hey Bluey" …). This is what makes waking up
+ * Asks Gemini whether a short burst of sound contains the wake phrase ("Hey Greeny" …). This is what makes waking up
  * by voice reliable without any recording or training. Only short bursts of speech (under 2.5 seconds) are sent,
  * at most one every few seconds, and only while he sleeps and the app is open.
  */

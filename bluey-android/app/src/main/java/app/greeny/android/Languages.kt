@@ -1,4 +1,4 @@
-package app.bluey.android
+package app.greeny.android
 
 /** A language he can speak. [english] is used in his instructions, [native] is shown on the buttons. */
 data class Lang(val code: String, val tag: String, val native: String, val english: String)

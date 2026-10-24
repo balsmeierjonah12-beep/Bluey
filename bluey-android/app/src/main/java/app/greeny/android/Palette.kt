@@ -1,4 +1,4 @@
-package app.bluey.android
+package app.greeny.android
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -8,7 +8,7 @@ import androidx.compose.ui.graphics.Color
 /** One color of berry: its look, its name, the words that wake it, and its voice. */
 data class Skin(
     val id: String,
-    val name: String,          // Bluey, Pinky, Greeny …
+    val name: String,          // Greeny, Pinky, Greeny …
     val colorName: String,     // shown in German in the settings
     val c1: Color, val c2: Color, val c3: Color, val c4: Color,
     val nose: Color,
@@ -18,10 +18,10 @@ data class Skin(
 )
 
 object Skins {
-    val bluey = Skin("blue", "Bluey", "Blau",
+    val blaubi = Skin("blue", "Blaubi", "Blau",
         Color(0xFFA9BCFF), Color(0xFF6C86F5), Color(0xFF4254D6), Color(0xFF2B2F8F), Color(0xFF1C1F66),
         male = true, voice = "Puck",
-        wakeVariants = listOf("bluey", "blui", "bluei", "blue", "blu", "bloui", "blooey", "blewie", "bluie", "blühi", "blüie", "blue-ei"))
+        wakeVariants = listOf("blaubi", "blaubie", "blaubii", "blauby", "blaupi", "plaubi", "blau bi", "blau bie", "blauwi", "blaube"))
     val pinky = Skin("pink", "Pinky", "Pink",
         Color(0xFFFFB6D9), Color(0xFFFF7EB8), Color(0xFFE8458E), Color(0xFFA6246A), Color(0xFF6B1546),
         male = false, voice = "Leda",
@@ -39,13 +39,13 @@ object Skins {
         male = false, voice = "Kore",
         wakeVariants = listOf("orangy", "orangi", "orangie", "orange", "oranji", "orangey", "orandschi"))
 
-    val all = listOf(bluey, pinky, greeny, purply, orangy)
-    fun byId(id: String?) = all.firstOrNull { it.id == id } ?: bluey
+    val all = listOf(greeny, blaubi, pinky, purply, orangy)
+    fun byId(id: String?) = all.firstOrNull { it.id == id } ?: greeny
 }
 
 /** Colors of the screen. The berry colors follow the chosen skin; the rest is fixed. */
 object Palette {
-    var skin by mutableStateOf(Skins.bluey)
+    var skin by mutableStateOf(Skins.greeny)
 
     val berry1 get() = skin.c1
     val berry2 get() = skin.c2

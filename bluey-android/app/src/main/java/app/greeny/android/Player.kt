@@ -1,4 +1,4 @@
-package app.bluey.android
+package app.greeny.android
 
 import android.media.AudioAttributes
 import android.media.AudioFormat

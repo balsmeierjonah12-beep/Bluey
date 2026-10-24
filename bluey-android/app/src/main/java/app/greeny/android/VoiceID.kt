@@ -1,4 +1,4 @@
-package app.bluey.android
+package app.greeny.android
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -26,7 +26,7 @@ import kotlin.math.sqrt
 class VoiceProfile(val name: String, val mean: DoubleArray, val sd: DoubleArray)
 
 class VoiceProfiles(context: Context) {
-    private val prefs = context.getSharedPreferences("bluey_voices", Context.MODE_PRIVATE)
+    private val prefs = context.getSharedPreferences("greeny_voices", Context.MODE_PRIVATE)
     var list by mutableStateOf(load()); private set
 
     fun add(profile: VoiceProfile) {

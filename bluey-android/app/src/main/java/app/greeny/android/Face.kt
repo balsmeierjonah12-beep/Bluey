@@ -1,4 +1,4 @@
-package app.bluey.android
+package app.greeny.android
 
 enum class Mood(val raw: String) {
     LISTENING("listening"), RESTING("resting"), THINKING("thinking"), TALKING("talking"),
