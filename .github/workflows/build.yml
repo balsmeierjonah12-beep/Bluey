@@ -14,8 +14,8 @@ jobs:
           if [ ! -d bluey-android ] || git diff --name-only HEAD~1 HEAD 2>/dev/null | grep -q '^bluey-android.zip$'; then
             rm -rf bluey-android
             unzip -q bluey-android.zip
-            git config user.name "bluey-bot"
-            git config user.email "bluey-bot@users.noreply.github.com"
+            git config user.name "bot"
+            git config user.email "bot@users.noreply.github.com"
             git add -A bluey-android
             git diff --cached --quiet || git commit -m "Quellcode entpackt"
             git push
@@ -24,13 +24,35 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
+      - name: Signaturschlüssel
+        run: |
+          git config user.name "bot"
+          git config user.email "bot@users.noreply.github.com"
+          if [ ! -f release.keystore ]; then
+            if [ "${{ github.event.repository.private }}" != "true" ]; then
+              echo "::error::Das Projekt ist öffentlich. Mach es erst privat (Settings, ganz unten Change visibility)."
+              exit 1
+            fi
+            PASS=$(openssl rand -hex 16)
+            keytool -genkeypair -keystore release.keystore -alias greeny -keyalg RSA -keysize 2048 -validity 10000 -storepass "$PASS" -keypass "$PASS" -dname "CN=Greeny, O=Greeny, C=DE"
+            echo "$PASS" > release.pass
+            git add release.keystore release.pass
+            git commit -m "Signaturschlüssel angelegt"
+            git push
+          fi
+          echo "KEYSTORE_PATH=$GITHUB_WORKSPACE/release.keystore" >> "$GITHUB_ENV"
+          echo "KEYSTORE_PASSWORD=$(cat release.pass)" >> "$GITHUB_ENV"
+          echo "KEY_PASSWORD=$(cat release.pass)" >> "$GITHUB_ENV"
+          echo "KEY_ALIAS=greeny" >> "$GITHUB_ENV"
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: 8.7
-      - run: gradle assembleDebug
+      - run: gradle assembleRelease bundleRelease
         working-directory: bluey-android
       - uses: softprops/action-gh-release@v2
         with:
-          tag_name: apk-${{ github.run_number }}
-          name: Bluey APK ${{ github.run_number }}
-          files: bluey-android/app/build/outputs/apk/debug/app-debug.apk
+          tag_name: release-${{ github.run_number }}
+          name: Greeny ${{ github.run_number }}
+          files: |
+            bluey-android/app/build/outputs/apk/release/app-release.apk
+            bluey-android/app/build/outputs/bundle/release/app-release.aab
