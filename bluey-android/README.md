@@ -122,3 +122,11 @@ Unlicense, wie das Hauptprojekt. Die Schriften (Fredoka, IBM Plex) stehen unter 
 - Noch offen für den Play Store: eine signierte Release-Version (statt der Debug-APK), die Datenschutz-Angaben in der Play Console und
   ein Gewerbe/Steuern, wenn du regelmäßig verkaufst. Der Dateiname `bluey-android.zip` und das GitHub-Projekt heißen nur noch so,
   weil der Bau darauf aufbaut.
+
+## Release-Version
+
+Der Bau erzeugt jetzt eine **signierte Release-Version** (`app-release.apk` zum Installieren, `app-release.aab` für den Play Store).
+Den Signaturschlüssel legt der Bau beim ersten Mal selbst an und speichert ihn im (privaten!) GitHub-Projekt als `release.keystore`
+und `release.pass`. **Sichere beide Dateien zusätzlich an einem zweiten Ort**: Geht der Schlüssel verloren, lässt sich die App nicht
+mehr aktualisieren. Die Release-Version hat einen anderen Schlüssel als die frühere Debug-Version, deshalb vorher die alte App
+deinstallieren.
